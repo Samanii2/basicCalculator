@@ -65,6 +65,20 @@ int main()
             std::cout << "Invalid input, undefined character detected \n";
             continue;
         }
+
+        bool validParanthesises = Test::Paranthesises(calculation);
+        if (validParanthesises == false)
+        {
+            std::cout << "Invalid input, invalid paranthesis input \n";
+            continue;
+        }
+
+        bool validParanthesisInside = Test::ParanthesisesOnlyOperator(calculation);
+        if (validParanthesisInside == false)
+        {
+            std::cout << "Invalid input, invalid expression inside paranthesis \n";
+            continue;
+        }
         
         bool operatorIsFirst = Test::FirstInputIsOperator(calculation);
         if (operatorIsFirst == true && !calculationAnswer.empty() && calculation[0] != "." && calculation[0] != ")")
@@ -73,6 +87,21 @@ int main()
         }
 
         Process::JoinNumbersAndOperators(calculation);
+
+        bool dotTest = Test::DotTest(calculation);
+        if (dotTest == false)
+        {
+            std::cout << "Invalid input, too many dots \n";
+            continue;
+        }
+
+        bool operatorExpression = Test::OperatorExpressions(calculation);
+        if (operatorExpression == false)
+        {
+            std::cout << "Invalid input, operators in invalid sequence \n";
+            continue;
+        }
+
         calculationAnswer = CalculationAnswer(calculation);
 
         std::cout << "ans = " << calculationAnswer << '\n';
