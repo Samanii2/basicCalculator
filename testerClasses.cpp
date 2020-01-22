@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include "testerClasses.h"
+#include <iostream>
 
 bool Test::OnlyNumbers(const std::string s)
 {
@@ -133,7 +134,7 @@ bool Test::OperatorExpressions(const std::vector<std::string>& calculation)
         }
         
     }
-    
+
     return testResult;
 }
 

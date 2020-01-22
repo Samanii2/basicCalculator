@@ -79,8 +79,14 @@ int main()
             std::cout << "Invalid input, invalid expression inside paranthesis \n";
             continue;
         }
-        
+
         bool operatorIsFirst = Test::FirstInputIsOperator(calculation);
+        if (operatorIsFirst == true && calculation.size() == 1)
+        {
+            std::cout << "Invalid input, operator without number \n";
+            continue; 
+        }
+
         if (operatorIsFirst == true && !calculationAnswer.empty() && calculation[0] != "." && calculation[0] != ")")
         {
             calculation.insert(calculation.begin(), calculationAnswer);
