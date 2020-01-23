@@ -83,6 +83,10 @@ void Process::InsertMultiplicationAtParanthesises(std::vector<std::string>& calc
         {
             calculation.insert (calculation.begin() + i, "*");  
         }
+        else if(calculation[i-1] != "" && calculation[i] == "(" && calculation[i-1] == ")")
+        {
+            calculation.insert (calculation.begin() + i, "*");  
+        }
     }
 
     for (int i = 0; i < calculation.size() - 1; i += 1)
@@ -121,6 +125,12 @@ void Process::HandleFirstOperator(std::vector<std::string>& calculation)
     {
             calculation.erase (calculation.begin());
     }
+
+    else if (calculation[0] == "(")
+    {
+            calculation.insert (calculation.begin(), "1");
+    }
+    
 }
 
 void Process::RemoveSpaces(std::string& str)

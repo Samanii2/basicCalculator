@@ -11,6 +11,8 @@
 
 std::string CalculationAnswer(std::vector<std::string> calculation)
 {
+    calculateParanthesis
+
     for (int i = 0; i < calculation.size(); i++)
     {
         if (calculation[i] == ")" )
@@ -20,7 +22,6 @@ std::string CalculationAnswer(std::vector<std::string> calculation)
             while (calculation[j] != "(")
             {
                 paranthesisCalculation.insert( paranthesisCalculation.begin() , calculation[j] );
-                std::cout << calculation[j] << "\n";
                 j -= 1;
             }
 

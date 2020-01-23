@@ -11,7 +11,7 @@ int main()
     ///Test case /////////////////////////////////////////
     //////////////////////////////////////////////////////
     std::string testAnswer = "0";
-    std::string testInput = "5^2 + (,0000000009 + ,0000000001)10000000000";
+    std::string testInput = "5^2 + ((2))(,0000000009 + ,0000000001)10000000000";
     Process::RemoveSpaces(testInput);
     Process::ReplaceCommasToDots(testInput);
     std::vector <std::string>testCalculation = GetCalculationVector(testInput);
@@ -66,6 +66,14 @@ int main()
             continue;
         }
 
+        if (calculation[0] == "." && calculation.size() == 1)
+        {
+            std::cout << "Invalid input, lone decimal operator \n";
+            continue; 
+        }
+
+        Process::JoinNumbersAndOperators(calculation);
+
         bool validParanthesises = Test::Paranthesises(calculation);
         if (validParanthesises == false)
         {
@@ -87,12 +95,10 @@ int main()
             continue; 
         }
 
-        if (operatorIsFirst == true && !calculationAnswer.empty() && calculation[0] != "." && calculation[0] != ")")
+        if (operatorIsFirst == true)
         {
             calculation.insert(calculation.begin(), calculationAnswer);
         }
-
-        Process::JoinNumbersAndOperators(calculation);
 
         bool dotTest = Test::DotTest(calculation);
         if (dotTest == false)
