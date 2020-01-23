@@ -2,11 +2,13 @@
 #include <vector>
 #include <string>
 #include <iomanip>
+#include <sstream>
 #include <algorithm>
 #include "operatorClasses.h"
 #include "testerClasses.h"
 #include "processClasses.h"
 
+<<<<<<< HEAD
 //Calculation 
 
 std::string CalculationAnswer(std::vector<std::string> calculation)
@@ -88,6 +90,7 @@ std::string CalculationAnswer(std::vector<std::string> calculation)
 
 std::vector<std::string> GetCalculationVector(std::string userInput)
 {
+<<<<<<< HEAD
     std::string operatorOrNumber = "";
     std::vector<std::string> calculation;
     std::vector<char> validOperators{'+','-','*','/', '^','.', '(', ')'};
@@ -135,15 +138,58 @@ std::vector<std::string> GetCalculationVector(std::string userInput)
         calculation.push_back(operatorOrNumber);
     }
     return calculation;
+=======
+  std::string operatorOrNumber = "";
+  std::vector<std::string> calculation;
+  std::vector<char> validOperators{'+', '-', '*', '/', '^', '.', '(', ')'};
+
+  for (int i = 0; i < userInput.length(); i++)
+  {
+    if (isdigit(userInput[i]))
+    {
+      operatorOrNumber += userInput[i];
+    }
+
+    else if (isdigit(userInput[i - 1]) || !isdigit(userInput[i]))
+    {
+      calculation.push_back(operatorOrNumber);
+      operatorOrNumber = "";
+      for (int j = 0; j < validOperators.size(); j++)
+      {
+        if (userInput[i] == validOperators[j])
+        {
+          operatorOrNumber.push_back(userInput[i]);
+          calculation.push_back(operatorOrNumber);
+          operatorOrNumber = "";
+          break;
+        }
+      }
+    }
+  }
+
+  if (!operatorOrNumber.empty())
+  {
+    calculation.push_back(operatorOrNumber);
+  }
+  return calculation;
+>>>>>>> f9f94c0e59cb43dadbf6c4970cf160a7716f7f78
 }
 
-//Prestenters
+//Presenters
 
 void ShowCalculation(std::string userInput, std::vector<std::string> calculation)
 {
+<<<<<<< HEAD
     std::cout << "Displaying calculation from string \"" << userInput << "\"" << "\n";
     for (int i = 0 ; i < calculation.size(); i++) 
     {
         std::cout << "calculation[" << i << "] = " << calculation[i] << "\n";
     }
+=======
+  std::cout << "Displaying calculation from string \"" << userInput << "\"\n";
+  for (int i = 0; i < calculation.size(); i++)
+  {
+    std::cout << "calculation[" << i << "] = " << calculation[i] << "\n";
+  }
+>>>>>>> f9f94c0e59cb43dadbf6c4970cf160a7716f7f78
 }
