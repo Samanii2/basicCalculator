@@ -7,13 +7,12 @@
 #include "operatorClasses.h"
 #include "testerClasses.h"
 #include "processClasses.h"
+#include "functions.h"
 
 //Calculation 
 
 std::string CalculationAnswer(std::vector<std::string> calculation)
 {
-    calculateParanthesis
-
     for (int i = 0; i < calculation.size(); i++)
     {
         if (calculation[i] == ")" )
