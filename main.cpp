@@ -57,6 +57,12 @@ int main()
             continue;
         }
         
+        if (userInput == "c" || userInput == "cl" || userInput == "clear")
+        {
+            calculationAnswer = "0";
+            std::cout << "Clearing...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            continue;
+        }
         std::vector <std::string>calculation = GetCalculationVector(userInput);
 
         bool sameAmountCharsInVectorAndInput = Test::CompareCharsFromInputWithCharsInVector(userInput, calculation);
