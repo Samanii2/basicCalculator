@@ -15,8 +15,4 @@ class Math
         static  std::string GetPowerOfResult(std::string n1, std::string n2);
 };
 
-//class Test
-//{
-//
-//}
 #endif
