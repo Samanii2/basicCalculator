@@ -78,8 +78,6 @@ int main()
             continue; 
         }
 
-        Process::JoinNumbersAndOperators(calculation);
-
         bool validParanthesises = Test::Paranthesises(calculation);
         if (validParanthesises == false)
         {
@@ -105,6 +103,8 @@ int main()
         {
             calculation.insert(calculation.begin(), calculationAnswer);
         }
+
+        Process::JoinNumbersAndOperators(calculation);
 
         bool dotTest = Test::DotTest(calculation);
         if (dotTest == false)
