@@ -30,12 +30,17 @@ int main()
     testAnswer = CalculationAnswer(testCalculation);
     std::cout << "ans = " << testAnswer << '\n';
 
-
     //////////////////////////////////////////////////////
     ///User case /////////////////////////////////////////
     //////////////////////////////////////////////////////
-
-    std::cout << "Welcome to the basic calculator!\n Start calculations: ";
+    std::cout << "\n\n\n\n\n\n\n\n\n";
+    std::cout << "////////////////////////////////////////\n";
+    std::cout << "/// Welcome to the basic calculator! ///\n";
+    std::cout << "////////////////////////////////////////\n\n";
+    std::cout << "Input q, quit or exit to exit calculator. \n";
+    std::cout << "Input c, cl or clear to clear calculation. \n";
+    std::cout << "Valid operations are + - * / ^ \n\n";
+    std::cout << "Start calculating! \n";
 
     std::string userInput = "";
     std::string calculationAnswer = "0";
