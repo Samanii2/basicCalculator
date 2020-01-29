@@ -1,17 +1,12 @@
-#include <iostream>
 #include <vector>
 #include <string>
-#include <iomanip>
-#include <sstream>
 #include <algorithm>
-#include "operatorClasses.h"
-#include "testerClasses.h"
-#include "processClasses.h"
+#include "operatorClass.h"
+#include "testerClass.h"
+#include "processClass.h"
 #include "functions.h"
 
-//Calculation 
-
-std::string CalculationAnswer(std::vector<std::string> calculation)
+std::string CalculateAnswer(std::vector<std::string> calculation)
 {
     for (int i = 0; i < calculation.size(); i++)
     {
@@ -26,7 +21,7 @@ std::string CalculationAnswer(std::vector<std::string> calculation)
             }
 
             calculation.erase (calculation.begin() + j, calculation.begin() + i + 1);
-            calculation.insert (calculation.begin() + j, CalculationAnswer(paranthesisCalculation));
+            calculation.insert (calculation.begin() + j, CalculateAnswer(paranthesisCalculation));
             i = j;
         }
     }
@@ -84,8 +79,6 @@ std::string CalculationAnswer(std::vector<std::string> calculation)
     return calculation.back();
 }
 
-//Get functions
-
 std::vector<std::string> GetCalculationVector(std::string userInput)
 {
     std::string operatorOrNumber = "";
@@ -117,6 +110,7 @@ std::vector<std::string> GetCalculationVector(std::string userInput)
 
         else if (!isdigit(userInput[i]))
         {
+            
             for(int j = 0; j < validOperators.size(); j++)
             {
                 if (userInput[i] == validOperators[j])
@@ -126,7 +120,7 @@ std::vector<std::string> GetCalculationVector(std::string userInput)
                     operatorOrNumber = "";
                     break;
                 }
-            }    
+            }
         }
     }
 
@@ -135,15 +129,4 @@ std::vector<std::string> GetCalculationVector(std::string userInput)
         calculation.push_back(operatorOrNumber);
     }
     return calculation;
-}
-
-//Presenters
-
-void ShowCalculation(std::string userInput, std::vector<std::string> calculation)
-{
-    std::cout << "Displaying calculation from string \"" << userInput << "\"" << "\n";
-    for (int i = 0 ; i < calculation.size(); i++) 
-    {
-        std::cout << "calculation[" << i << "] = " << calculation[i] << "\n";
-    }
 }

@@ -1,14 +1,11 @@
 #include <string>
 #include <vector>
+#include <map>
 
 //Calculate
 
-std::string CalculationAnswer(std::vector<std::string> calculation);
+std::string CalculateAnswer(std::vector<std::string> calculation);
 
 //Get functions
 
 std::vector <std::string> GetCalculationVector(std::string userInput);
-
-//Presenters
-
-void ShowCalculation(std::string userInput, std::vector<std::string> calculation);

@@ -3,7 +3,7 @@
 #include <sstream>
 #include <string>
 #include <math.h>
-#include "convertClasses.h"
+#include "convertClass.h"
 #include <boost/multiprecision/cpp_dec_float.hpp>
 
 std::string Convert::MultiPrecisionFloatToString(boost::multiprecision::cpp_dec_float_100 mpFloat)

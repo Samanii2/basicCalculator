@@ -1,9 +1,11 @@
 #include <string>
 #include <vector>
+#include <map>
 #include <iostream>
 #include "functions.h"
-#include "testerClasses.h"
-#include "processClasses.h"
+#include "testerClass.h"
+#include "processClass.h"
+#include "outputClass.h"
 
 int main()
 {
@@ -15,8 +17,8 @@ int main()
     Process::RemoveSpaces(testInput);
     Process::ReplaceCommasToDots(testInput);
     std::vector <std::string>testCalculation = GetCalculationVector(testInput);
-        
-    ShowCalculation(testInput, testCalculation);
+    
+    Output::ShowCalculation(testInput, testCalculation);
 
     bool testOperatorIsFirst = Test::FirstInputIsOperator(testCalculation);
     if (testOperatorIsFirst == true && !testAnswer.empty() && testCalculation[0] != ".")
@@ -24,26 +26,21 @@ int main()
         testCalculation.insert(testCalculation.begin(), testAnswer);
     }
 
-    ShowCalculation(testInput, testCalculation);
+    Output::ShowCalculation(testInput, testCalculation);
 
     Process::JoinNumbersAndOperators(testCalculation);
-    testAnswer = CalculationAnswer(testCalculation);
+    testAnswer = CalculateAnswer(testCalculation);
     std::cout << "ans = " << testAnswer << '\n';
 
     //////////////////////////////////////////////////////
     ///User case /////////////////////////////////////////
     //////////////////////////////////////////////////////
-    std::cout << "\n\n\n\n\n\n\n\n\n";
-    std::cout << "////////////////////////////////////////\n";
-    std::cout << "/// Welcome to the basic calculator! ///\n";
-    std::cout << "////////////////////////////////////////\n\n";
-    std::cout << "Input q, quit or exit to exit calculator. \n";
-    std::cout << "Input c, cl or clear to clear calculation. \n";
-    std::cout << "Valid operations are + - * / ^ \n\n";
-    std::cout << "Start calculating! \n";
+
+    Output::WelcomeMessage();
+    Output::HelpInstructions();
 
     std::string userInput = "";
-    std::string calculationAnswer = "0";
+    std::string answer = "0";
 
     while (userInput != "quit")
     {
@@ -64,10 +61,17 @@ int main()
         
         if (userInput == "c" || userInput == "cl" || userInput == "clear")
         {
-            calculationAnswer = "0";
-            std::cout << "Clearing...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            answer = "0";
+            std::cout << "Clearing...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             continue;
         }
+
+        if (userInput == "h" || userInput == "help")
+        {
+            Output::HelpInstructions();
+            continue;
+        }
+        
         std::vector <std::string>calculation = GetCalculationVector(userInput);
 
         bool sameAmountCharsInVectorAndInput = Test::CompareCharsFromInputWithCharsInVector(userInput, calculation);
@@ -106,7 +110,7 @@ int main()
 
         if (operatorIsFirst == true)
         {
-            calculation.insert(calculation.begin(), calculationAnswer);
+            calculation.insert(calculation.begin(), answer);
         }
 
         Process::JoinNumbersAndOperators(calculation);
@@ -125,9 +129,9 @@ int main()
             continue;
         }
 
-        calculationAnswer = CalculationAnswer(calculation);
+        answer = CalculateAnswer(calculation);
 
-        std::cout << "ans = " << calculationAnswer << '\n';
+        std::cout << "ans = " << answer << '\n';
     }
 
     return 0;

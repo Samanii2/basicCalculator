@@ -1,6 +1,6 @@
 #include <string>
-#include "operatorClasses.h"
-#include "convertClasses.h"
+#include "operatorClass.h"
+#include "convertClass.h"
 #include <math.h>
 #include <iomanip>
 #include <sstream>

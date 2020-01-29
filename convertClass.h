@@ -1,5 +1,5 @@
-#ifndef CONVERTCLASSES_H__
-#define CONVERTCLASSES_H__
+#ifndef CONVERTClass_H__
+#define CONVERTClass_H__
 #include <string>
 #include <boost/multiprecision/cpp_dec_float.hpp>
 

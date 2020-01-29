@@ -1,5 +1,5 @@
-#ifndef OPERATORCLASSES_H__
-#define OPERATORCLASSES_H__
+#ifndef OPERATORClass_H__
+#define OPERATORClass_H__
 #include <string>
 
 class Math

@@ -1,5 +1,5 @@
-#ifndef PROCESSCLASSES_H__
-#define PROCESSCLASSES_H__
+#ifndef PROCESSClass_H__
+#define PROCESSClass_H__
 #include <string>
 
 class Process

@@ -1,9 +1,9 @@
 #include <vector>
 #include <string>
-#include "processClasses.h"
+#include "processClass.h"
 #include <algorithm>
-#include "testerClasses.h"
-#include "operatorClasses.h"
+#include "testerClass.h"
+#include "operatorClass.h"
 #include <iostream>
 
 void Process::JoinNumbersAndOperators(std::vector<std::string>& calculation)
@@ -23,7 +23,7 @@ void Process::RemoveExtraAddition(std::vector<std::string>& calculation)
 {
     for (int i = 0; i < calculation.size() - 1; i += 1)
     {
-        if(calculation[i-1] != "" && calculation[i] == "+" && !Test::OnlyNumbers(calculation[i-1]) && Test::OnlyNumbers(calculation[i+1]))
+        if(calculation[i-1] != "" && calculation[i] == "+" && !Test::OnlyNumbers(calculation[i-1]) && calculation[i-1] != ")" && Test::OnlyNumbers(calculation[i+1]))
         {
             std::vector< std::string >::iterator it = calculation.begin() + i;
             std::string joinedNum = Math::GetAdditionResult("0", calculation[i + 1]);
@@ -64,7 +64,7 @@ void Process::MakeNumberNegative(std::vector<std::string>& calculation)
 {
     for (int i = 0; i < calculation.size() - 1; i += 1)
     {
-        if(calculation[i-1] != "" && calculation[i] == "-" && !Test::OnlyNumbers(calculation[i-1]) && Test::OnlyNumbers(calculation[i+1]))
+        if(calculation[i-1] != "" && calculation[i] == "-" && !Test::OnlyNumbers(calculation[i-1]) && calculation[i-1] != ")" && Test::OnlyNumbers(calculation[i+1]))
         {
             std::vector< std::string >::iterator it = calculation.begin() + i;
             std::string joinedNum = Math::GetSubtractionResult("0", calculation[i + 1]);

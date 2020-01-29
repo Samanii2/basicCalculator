@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-#include "testerClasses.h"
+#include "testerClass.h"
 #include <iostream>
 
 bool Test::OnlyNumbers(const std::string s)
@@ -21,9 +21,16 @@ bool Test::OnlyIntegers(const std::string s)
     return testResult;
 }
 
+bool Test::OnlyLetters(const std::string s)
+{
+    bool testResult = s.find_first_not_of( "abcdefghijklmnopqrstuvwxyzåäö" ) == std::string::npos;
+
+    return testResult;
+}
+
 bool Test::FirstInputIsOperator(const std::vector<std::string>& calculation)
 {
-    std::vector<std::string> validOperators{ "+", "-", "*", "/", "^", ".", "(", ")" };
+    std::vector<std::string> validOperators{ "+", "-", "*", "/", "^"};
 
     bool testResult = false;
 
