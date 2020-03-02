@@ -20,12 +20,17 @@ std::string CalculateAnswer(std::vector<std::string> calculation)
                 j -= 1;
             }
 
+            if ( Test::LastInputIsOperator(paranthesisCalculation) == true )
+            {
+                return "Invalid input, invalid paranthesis expression";
+            }
+
             calculation.erase (calculation.begin() + j, calculation.begin() + i + 1);
             calculation.insert (calculation.begin() + j, CalculateAnswer(paranthesisCalculation));
             i = j;
         }
     }
-    
+
     for (int i = 1; i < calculation.size(); i += 2 )
     {
         if(calculation[i] == "/" && Test::OnlyNumbers(calculation[i-1]) && Test::OnlyNumbers(calculation[i+1]))
@@ -110,7 +115,6 @@ std::vector<std::string> GetCalculationVector(std::string userInput)
 
         else if (!isdigit(userInput[i]))
         {
-            // insert operators
             for(int j = 0; j < validOperators.size(); j++)
             {
                 if (userInput[i] == validOperators[j])
