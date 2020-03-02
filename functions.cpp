@@ -110,7 +110,7 @@ std::vector<std::string> GetCalculationVector(std::string userInput)
 
         else if (!isdigit(userInput[i]))
         {
-            
+            // insert operators
             for(int j = 0; j < validOperators.size(); j++)
             {
                 if (userInput[i] == validOperators[j])
