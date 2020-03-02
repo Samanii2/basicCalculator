@@ -8,6 +8,8 @@
 
 void Process::JoinNumbersAndOperators(std::vector<std::string>& calculation)
 {
+    Process::HandleLastOperator(calculation);
+
     Process::HandleFirstOperator(calculation);
 
     Process::MakeDecimalNumbers(calculation);
@@ -52,9 +54,21 @@ void Process::MakeDecimalNumbers(std::vector<std::string>& calculation)
         if(calculation[i] == "." && Test::OnlyIntegers(calculation[i-1]) && Test::OnlyIntegers(calculation[i+1]))
         {
             std::string decimalNumberResult = Math::GetJoinedDecimalNumber(calculation[i-1], calculation[i+1]);
-            std::vector< std::string >::iterator it = calculation.begin() - 1 + i;
+            std::vector< std::string >::iterator it = calculation.begin() + i - 1;
 
             calculation.erase (it, it + 3);
+            calculation.insert (it, decimalNumberResult);
+        }
+    }
+
+    for (int i = 1; i < calculation.size(); i += 1)
+    {
+        if(calculation[i] == "." && Test::OnlyIntegers(calculation[i-1]) && !Test::OnlyIntegers(calculation[i+1]))
+        {
+            std::string decimalNumberResult = Math::GetJoinedDecimalNumber(calculation[i-1], "0");
+            std::vector< std::string >::iterator it = calculation.begin() + i - 1;
+
+            calculation.erase (it, it + 2);
             calculation.insert (it, decimalNumberResult);
         }
     }
@@ -131,6 +145,19 @@ void Process::HandleFirstOperator(std::vector<std::string>& calculation)
             calculation.insert (calculation.begin(), "1");
     }
     
+}
+
+void Process::HandleLastOperator(std::vector<std::string>& calculation)
+{
+    std::string secondLast = calculation[calculation.size() - 2];
+    if (calculation.back() == "." && Test::OnlyIntegers(secondLast))
+    {
+            std::string decimalNumberResult = Math::GetJoinedDecimalNumber(secondLast, "0");
+            calculation.erase (calculation.end());
+            calculation.erase (calculation.end());
+            calculation.insert (calculation.end(), decimalNumberResult);
+    }
+
 }
 
 void Process::RemoveSpaces(std::string& str)

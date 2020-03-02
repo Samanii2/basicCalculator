@@ -28,6 +28,23 @@ bool Test::OnlyLetters(const std::string s)
     return testResult;
 }
 
+bool Test::LastInputIsOperator(const std::vector<std::string>& calculation)
+{
+    std::vector<std::string> validOperators{ "+", "-", "*", "/", "^"};
+
+    bool testResult = false;
+
+    for (int i = 0; i < validOperators.size(); i++)
+    {
+        if (calculation.back() == validOperators[i])
+        {
+            testResult = true;
+        }
+    }
+
+    return testResult;
+}
+
 bool Test::FirstInputIsOperator(const std::vector<std::string>& calculation)
 {
     std::vector<std::string> validOperators{ "+", "-", "*", "/", "^"};
@@ -40,7 +57,6 @@ bool Test::FirstInputIsOperator(const std::vector<std::string>& calculation)
         {
             testResult = true;
         }
-            
     }
 
     return testResult;
@@ -59,49 +75,32 @@ bool Test::CompareCharsFromInputWithCharsInVector(const std::string& userInput, 
     return charsInVector == charsInString;
 }
 
-bool Test::ParanthesisesOnlyOperator(const std::vector<std::string>& calculation)
-{
-    bool testResult = true;
-    for(int i = 0; i < calculation.size(); i++)
-    {
-        if(calculation[i] == "(")
-        {
-            std::vector<std::string> validOperators{ "+", "-", "*", "/", "^", "."};
-            for(int j = 0; j < validOperators.size(); j++)
-            {
-                if(calculation[i+1] == validOperators[j] && calculation[i+2] == ")")
-                {
-                    testResult = false;
-                }
-            }
-        }
-    }
-
-    return testResult;
-}
-
 bool Test::Paranthesises(const std::vector<std::string>& calculation)
 {
     bool testResult = true;
     int leftCount = 0;
     int rightCount = 0;
+    int distanceStart = 0;
+    int distanceEnd = 0;
     for(int i = 0; i < calculation.size(); i++)
     {
         if(calculation[i] == "(")
         {
             leftCount +=1;
-            if(calculation[i+1] == ")")
-            {
-                testResult = false;
-                break;
-            }
+            distanceStart = i;
         }
 
         else if(calculation[i] == ")")
         {
             rightCount +=1;
+            distanceEnd = i;
         }
 
+        if(distanceEnd - distanceStart == 1)
+        {
+            testResult = false;
+            break;
+        }
         if(rightCount > leftCount)
         {
             testResult = false;

@@ -87,6 +87,8 @@ int main()
             continue; 
         }
 
+
+
         bool validParanthesises = Test::Paranthesises(calculation);
         if (validParanthesises == false)
         {
@@ -94,10 +96,10 @@ int main()
             continue;
         }
 
-        bool validParanthesisInside = Test::ParanthesisesOnlyOperator(calculation);
-        if (validParanthesisInside == false)
+        bool operatorLast = Test::LastInputIsOperator(calculation);
+        if (operatorLast == true)
         {
-            std::cout << "Invalid input, invalid expression inside paranthesis \n";
+            std::cout << "Invalid input, invalid last operator \n";
             continue;
         }
 
@@ -112,7 +114,7 @@ int main()
         {
             calculation.insert(calculation.begin(), answer);
         }
-
+        
         Process::JoinNumbersAndOperators(calculation);
 
         bool dotTest = Test::DotTest(calculation);
@@ -130,8 +132,14 @@ int main()
         }
 
         answer = CalculateAnswer(calculation);
-
-        std::cout << "ans = " << answer << '\n';
+        if(Test::OnlyNumbers(answer))
+        {
+            std::cout << "ans = " << answer << '\n';
+        }
+        else
+        {
+            std::cout << answer << '\n';
+        }
     }
 
     return 0;
