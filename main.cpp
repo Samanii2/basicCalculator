@@ -87,8 +87,6 @@ int main()
             continue; 
         }
 
-
-
         bool validParanthesises = Test::Paranthesises(calculation);
         if (validParanthesises == false)
         {
